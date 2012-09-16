@@ -1,61 +1,163 @@
 Lisp Is a Sanskrit Parallel
 ==========
-Verson 1: A Quick 'n' Dirty Elaboration for CS People
+Version 1: A Quick 'n' Dirty Elaboration for Computer Science People
 ----------
 
-In the following note, I first sketch out direct parallels and then demonstrate them with examples.
- * I rely on the precise and closely reasoned terminology of the SICP text book in order to spell out identical design and implementation features of both Lisp and Sanskrit.
- * CS people will recognise all these ideas and so, to effect "A Quick 'n' Dirty Elaboration", I only use two examples from Vedic Mathematics to demonstrate nearly all the direct parallels.
- * Many more subtle nuances are left for an expanded "Version 2"; to be completed.
- * None of the ideas contained below originally occured to me. I am only putting two-and-two together and sketching a picture.
+(Also avilable at https://github.com/lambdadi/sicp)
+
+The following thought-note first sketches out direct parallels and then demonstrates them by citing examples.
+
+# Preface
+----------
+
+ * SOURCES: All material and ideas in this note are drawn from five books: (i) Structure and Interpretation of Computer Programs (SICP) (2nd ed., as revised in 1990), ISBN 978-81-7371-527-3; (ii) Vedic Mathematics (Revised 1992), ISBN 81-208-0164-4; (iii) Scientific Nagari Phonography (Pilot Edition, 1994), Published by Institute of Typographical Research (Pune); (iv) "Vedic Swarachinhey" (1st ed., Oct 2010, in Marathi), "Sant Dnyaneshwar Ved-Vidya Pratishthan" (Aurangabad); and (v) Sanskrit and Science (1st ed., 1984), Bharatiya Vidya Bhavan.
+ * LANGUAGE: The precise and closely reasoned terminology of the SICP text book is directly used, but only as a device to _spell out_ identical design and implementation features of both Lisp and Sanskrit. Not mere patterns, but actual features.
+ * EXAMPLES: Vedic Mathematics may be used to practically demonstrate all the direct parallels. CS people will recognise all the ideas written in the SICP book language and so, to effect "A Quick 'n' Dirty Elaboration" available to them, only two Vedic Math examples are used to demonstrate the main parallels.
+ * NEXT STEPS: Many more subtle nuances are left for an expanded "Version 2"; to be completed. The burden of iron-clad proof may be abstracted away to a Version 3.
+ * NO CLAIM TO IP: None of the ideas contained below originally occured to me. I am only putting two-and-two together and sketching a picture. These connections are available for anyone to discover by choice and/or chance. So I disclaim ownership of everything in this note.
 
 # Striking Parallels
+----------
 
-Lisp is, first and foremost, a language standard. And so is Sanskrit.
- * Both standards rely upon the pre-existance of atomic constructs that are universal and near-unchanging. Lambda Calculus is to Lisp, what Phoenetics is to Sanskrit.
- * Both standards were evolved to progressively control and manage complexities arising from the desire to implement general-purpose knowledge processing at any scale.
- * Both standards were codified to ensure undistorted and timeless propagation of _underlying knowledge processing principles_ without being burdened by dependance on any single - and by nature, arbitrary - language implementation.
+## Standards First
+
+Lisp is, first and foremost, a __standard__. And so is Sanskrit.
+ * Both standards rely upon the pre-existance of atomic constructs that are universal and near-unchanging. The symbolic logic of Lambda Calculus is to Lisp, what the phoenetic logic of Vedic "Maheshwari" Phonography is to Sanskrit.
+ * Both standards were evolved to progressively control and manage complexities arising from the desire to achieve general-purpose as well as special-purpose knowledge processing at any scale.
+ * Both standards were codified to ensure undistorted and near-timeless propagation of _underlying knowledge processing principles_ without being burdened by dependance on any single - and by nature, arbitrary - language implementation.
  * This holds true even though the Lisp standard evolved to fit the medium of essentially serial-processing hardware, whereas the Sanskrit standard evolved to fit the medium of essentially networked-processing wetware.
+
+## Computational Firepower
 
 Both standards provide, in full measure, all three key mechanisms common to all powerful programming languages:
  * Primitive expressions, which represent the simplest entities the language is concerned with,
  * Means of Combinination, by which Compound Elements are built, and
  * Means of Abstraction, by which compound elements can be named and manipulated as units. Very strikingly, both foster Procedural Abstraction, Higher Order Procedures including General Methods of computation, Compound Data and Data Abstraction, all the way up to Metalingual Abstraction.
+ * Special comment: The notion of __List__ Processing is embedded in the very core of the Vedic system, as will be illustrated in one of the Vedic Math examples to follow.
 
-Both standards have historically spawned highly similar dialectic evolution.
- * Each standard first spawned a succinct, expressive, fully general purpose, classical implementation.
- * Standardization enabled several brand new languages as well as derivative dialects, including general-purpose and/or special-purpose variants.
- * Common Lisp is to the Lisp standard, what Vedic Sanskrit is to the Sanskrit Standard. 
- * Scheme, Clojure, Auto-Lisp etc. are to Lisp/Common Lisp what Pali, Prakrit, Marathi etc. are to Sanskrit/Vedic Sanskrit.
+ ## "Interpretedness"
 
 Both standards call for implementation of _interpreted_ languages:
- * The fact of "interpretedness" stays true even though Computers and People, so far, possess fundamentally different operating environments. In other words we use different computational processes. On one hand, the processes and time spans of interpreter installation are different. Computers can be "trained" to interpret Lisp implementations with one-click-installs. And people must be trained to use Sanskrit interpretations via repeated recitation of pre-defined material using pre-defined methods. But on the other hand, whereas one computer may operate with the Global Environment of only one Lisp interpreter at run time; one person may concurrently operate with several Sanskrit-based as well as non-Sanskrit-based interpreters at run time.
+ * Implcitly, by virtue of such interpretedness, raw transliteration is practically possible _and_ easy. Lisp permits high-fidelity transliteration of Lisp code into all Lisps as well as virtually all other known languages - high-level to machine-level. Similarly Sanskrit permits phoenetically perfect raw transliterations of all Sanskrit-standards-based language implementations (Hindi/Marathi/Bengali/Tamil) as well as any other known spoken language - human or animal.
+ * Conversely, such a property further (profoundly) permits any computer/person to use suitably interpreted code, even though that person/computer may be **completely blind** to the parent code's internal logic and/or multi-dimensional code expansions that can be generated by imposing other types of interpreters. By this power, and as long as the underlying symbolic/phoenetic logic holds true, a self-describing code base may be accurately propogated and used in one way or another by many, if not most, computing systems across many generations.
+ * The fact of "interpretedness" stays true even though Computers and People, so far, possess fundamentally different operating environments. In other words we use different computational processes. On one hand, the processes and time spans of interpreter installation are different. Computers can be "trained" to interpret Lisp implementations even with one-click-installs. And people must be trained to use Sanskrit interpretations via repeated recitation of pre-defined material using pre-defined methods. But on the other hand, whereas one computer may operate with the Global Environment of only one Lisp interpreter at run time; one person may concurrently operate with compound (if not several) Sanskrit-based as well as non-Sanskrit-based interpreters at run time.
  * Philosophically, users are allowed to modify the language and even the interpreter itself. In both cases, success is normally follows (say) one or two decades of broad and deep exposure to _solving real problems_ using at least one standard language implementation. (Interim newbie experiments may of course be conducted, but only in the seclusion of a favourite (and preferably far away) forest clearing.)
 
+## Dialectic Evolution
+
+Last but not least, both standards have historically derived themselves from, and later spawned, dialectic evolution in highly similar ways:
+ * Each standard was invented with a goal to provide a near-perfect base for general-purpose knowledge processing, _in response to_ difficulties arising from idiosyncracies of specific languages that had evolved till that time.
+ * The standard then spawned a fully general purpose, expressive, yet succinct classical implementation. 
+ * Common Lisp is to the Lisp standard, what Vedic Sanskrit is to the Sanskrit Standard. 
+ * Language evolution is driven strongly by the pursuit of Great Power of Expression with Great Succinctness, which is a cherished and often-stated ideal of both communities.
+ * Standardization enabled several brand new languages as well as derivative dialects, including general-purpose and/or special-purpose variants.
+ * Scheme, Clojure, Auto-Lisp etc. are to Lisp/Common Lisp what Pali, Prakrit, Marathi etc. are to Sanskrit/Vedic Sanskrit. Just like Clojure was invented to make esoteric Lisp cooperate with the common man's Java platform; Marathi was invented to translate esoteric Vedic know-how in a bid to force that community to cooperate with the common person.
+
 # Two Illustrative Examples
+----------
 
-Pi-expansion Shloka
- * Demonstrates Primitive Expressions, Means of Combination, and 
- * Is a model of Succinctness and Expressiveness
- * Directly demonstrates Multilingual Abstraction
- * Can be further re-interpreted and transformed into a far more profound set of abstractions
+## "Vargamula" Sutra: A Formula-Procedure to find Square Root by "Straight Squaring"
 
-Vedic Math Sutra
- * Compare orders of growth
- * Demonstrates one Extra-Important additional idea of, at least, the Vedic Math meta-Sanskrit: The Formula _is_ The Procedure (In Sanskrit, severally, imperative and declarative knowledge is identical.)
- * Possible to demonstrate a macro if the Sutra has a general enough scope
+(Taken from Chapter #34 of the Vedic Mathemtics book, referenced in the preface.)
 
-# Conclusion and Next Steps
+To show operation of the Vargamula Surta and to provide proof of its validity, I will also need to invoke and explain several other Sutras and their corollaries; so better the original book than I. But explanation of its construction itself gives enough insight for the purpose of this thought-note.
 
-A "Version 2" subtitled "A More Generalist Elaboration" is to follow. But first, a quick note: 
-I _deeply_ believe, "Version 3: A Truly All-Encompassing Elaboration" needs to be written. I am not, as yet, capable of it but there are plenty who are. And I hope that their work will be entitled "Sanskrit Interpreted Computation and Programming", in deference to the high standard of the modern work that so completely and delightfully imparts the reasoning necessary to express not only the poetic verisimilitude but also the hard-nosed engineering design features that are identically leveraged by the world of Lisp as well as the world of Sanskrit.
+Vargamula's construction:
+ * It requires application of _another_ sutra called "Dvandva Yoga", or "The Duplex Combination Process".
+ * But "Dvandva Yoga" can be interpreted to mean "squaring" (a^2) or mean "cross-multiplication" (2ab) or mean _both_ squaring and cross-multiplication (a^2 _and_ 2ab). "Dvandya Yoga" itself is a general-purpose procedure that invokes "Urdhva Tiryak" in general, and in the event of special cases, optimized procedures such as "Yavadunam Sutra". The "Urdhva Tiryak" procedure, in turn, performs the duty of a general purpose division procedure that accepts _any_ arbitrary real number, algebraic expression, partial fraction, and compound integral (with numerator and denominator).
+ * So "Vargamula" must somehow abstract away such complexity and force "Dvandva Yoga" to generate new meaning i.e. coff up square-roots. This abstraction is achieved by forcing re-interpretation of input data and also invoking some cool number theory procedures.
+ * The input data re-interpretation rule says: "The given number is arranged as _two-digit groups_ from right to left, and a single digit if left over at the left hand end is treated as a simple group. The number of digits in the square root will be the same as the number of digit-groups in the given number and a single digit if any such there be. Thus if the square root contains n digits, the square must contain 2n or 2n-1 digits." This is nothing but __treating input data as a List__ rather than a single atomic value.
+ * Still further, it invokes several number theory procedures namely: (i) that 1, 5, 6 and 0 at the end of a number reproduce themselves as the last digits in its square; (ii) that squares of the complements from ten have the same last digits i.e. the complementary pairs of 1^2 and 9^2; 2^2 and 8^2; 3^2 and 7^2; 4^2 and 6^2; 5^2 and 5^2; and 0^2 and 10^2 all have the same endings, namely, 1, 4, 9, 6, 5 and 0 respectively AND (iii) that 2, 3, 7, and 8 are out of court altogether, as the final digits of a perfect square.
+
+Therefore, Vargamula is a compound procedure _and_ it operates on compound data. And I suspect that because it encapsulates general-purpose division behaviour of "Urdhva Tiryak", Vargamula may also be exended for square-rooting any arbitrary mathematical function. This is nothing but procedural as well as data abstraction. At any rate, I can't help but feel that the idea of transforming a squaring procedure into a square-root procedure at run-time, is Lisp macro behaviour.
+
+In summarry, Vargamula's deconstruction...
+ * Demonstrates procedural as well as Data abstractions.
+ * Demonstrates List-processing of data where Lists can be of arbitrary size.
+ * Demonstrates dynamic typing as it does not care if the input is whole or irrational.
+ * Points at deep insight into orders of growth (Theta) of the processes generated by procedures, in time _and_ in space.
+ * Hints that it is possible to demonstrate macro behaviour, if the Sutra has a general enough scope.
+ * Uncovers one Extra-Important additional idea of, at least, the Vedic Math meta-Sanskrit: The Formula _is_ The Procedure. It appears to me that, in Vedic Sanskrit, it is not compulsary to think of imperative and declarative knowledge as always seperate. This, I feel, may provide an order of magnitude more succinctness, as the task of translating between imperative and declarative formulations is rendered non-binding.
+
+## A Deceptively Innocuous "Shloka" (Couplet/Aphorism)
+
+The Shloka is taken from page 348 of the Vedic Mathematics book referenced in the preface. 
+It is composed in "Anushthub" _chhanda_ i.e. meter.
+
+ > GopiBhaagyamDhuvraat-ShrugdiShodadhiSandhiga|
+ > KhalaJeevitaKhaataav GalahalaraSanghar||
+
+This Shloka is so worded, that at the surface, it is an ode to Lord Sri-Krishna. A few clever wordplays (which I don't understand, but the initiated will) also make it a praise of Lord Sri-Shankara. But now get this - if you apply the Vedic Alphabetic Code to it, the shloka expands into the value of (pi/10) accurate to 32 (!) decimal places. And, the book claims (but sadly does not explain) that the Shloka also holds a self-contained "Master Key" to expand its value to __any number__ of decimal digits. Blammo! But it at least helps us decode the 32 decimals of the said Shloka:
+
+The key to this code is found in an aphorism that reads as "Ka-adi nav, Ta-adi nav, Pa-adi pancchak, ya-adyashtak ksha shunyam cha|"
+
+So the expanded code is found to be based on consonant _sounds_ and reads as follows:
+ > (1) ka, ta, pa and ya all denote 1;
+ > (2) kha,tha, pha and ra all represent 2;
+ > (3) ga, da, ba and la all stan for 3;
+ > (4) gha, dha, bha, and va all denote 4;
+ > (5) gna, na, ma and sa all represent 5;
+ > (6) ca, ta, and s'a all stand for 6;
+ > (7) cha, tha, and s.a all denote 7;
+ > (8) ja, da, and ha all represent 8;
+ > (9) jha and dha stand for 9; and
+ > (10) Ks.a (or Ks.udra) means Shunya or Zero!
+
+Vovels do not find a place in the composition, hence make no difference; and in conjunct consonants, the last consonant alone is to be counted.
+
+So applying this to the Shloka generates:
+ > .3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3
+ >  2 3 8 4 6 2 6 4 3 3 8 3 2 7 9 2...
+(I can't pronounce all of it properly beyond .3141, so I can't verify the remaining digits. But even just .3141 is so cool!)
+
+Now while the book doesn't say it, I felt there could be a more profound idea embedded in it. So I let abstraction run amock and found that metaphysical interpretation yields an astonishing unification of all three results of the Shloka:
+ * Brahma, Vishnu, and Maheshwar respectively are "The Creator", "The Preserver", and "The Destroyer" of the entire known Universe.
+ * "Lord Sri-Krishna" is an encapsulation, in human form, of Lord Vishnu a.k.a. "The Preserver".
+ * "Lord Sri-Shankara" is again an encapsulation, in human form, of Maheshwar a.k.a. "The Destroyer".
+ * Now, there is no mention of Brahma anywhere in the Shloka. Indeed, his work begins only if there is no Universe.
+ * By way of this exclusion, the Shloka also might have something to do with the fact of an _existing_ Universe.
+ * But what has pi got to do with the two fellows and the Universe?
+ * Now it gets weirder: Vedic seers also stated that the shape of the circle permeates the entire Universe. "Akhanda mandalakaram vyaptam yaen characharam.", they said.
+ * Also the Vedic idea of the Universe is that it is net-net "Shunya" i.e. Zero. Which is also denoted by a circle.  (By the way, the circle also denotes the idea of "Gati" i.e. velocity. But I'll stop short of saying planetary motion.)
+ * So the very notion of a circular shape is also a common factor.
+ * And lo and behold, one can indeed describe any circle (or sphere) of any scale at any point in the Universe, with sufficiently accurate value of Pi.
+ 
+Deconstruction of this Shloka...
+ * Demonstrate Primitive Expressions, Means of Combination, and Abstraction.
+ * Is a model of Succinctness and Expressiveness.
+ * Demonstrates "Interpretedness" and shows how "Sanskrits" use Multilingual Abstraction.
+ * Hints that Shlokas and Sutras can perhaps themselves be treated as data and used to further generate far more profound sets of abstractions.
+
+ 
+# Next Steps: Ideas for Version 2
+
+"A More Generalist Elaboration" may possibly be written as follows:
+
+ * FIRST Explain, by __several__ analogies, how complexity is controlled an managed. Use things commonly observable by physical senses - like Music and Traffic. Avoid difficult subject matter like Biology or Math.
+ * Using the analogy, define the core ideas of Primitives, Means of Combination and Means of Abstraction.
+ * For example one may use music to explain it thus:
+   ** Primitives: e.g. Sing and show the 7 musical notes Sa, Re, Ga, Ma, Pa, Dha, Ni, Sa. These, nobody can mess with, and so are standard.
+   ** Means of Combination: e.g. Sing and show how each next note must be at a fixed distance from the first note Sa. Show how harmonics may be created, but only in relation to the base notes. And so all possible musical scale relationships may be created.
+   ** Means of Abstraction: e.g. One may represent a single note or combination of several notes by means of any abstract word (Like "So long! Farewell! Auf weiderchen adieu.") as long as the word stays true to the note or series of notes. 
+   ** Show how notes are primitives for words; words are primitives for rhymes; rhymes are primitives for musical pieces; musical pieces are primitives for complete Operas. And so, all music of any sophistication may be produced. Said another way, musical complexity is controlled and managed.
+ * NEXT use only the terminology of Primitives etc... and **visually** reinforce how they are a general pattern upon which all systems evolve to massive complexity. Add cells to generate tissue to generate organs to generate organ systems to generate people to generate families to generate villages to generate society to generate government to generate war and peace. Where no abstraction ever need worry about the details of the abstraction that came before it.
+ * NEXT write some Lisp code **in plain English** and **actually build** upwards to abstractions. Introduce details and nuances (well-commented, of course).
+ * FINALLY reproduce the selfsame Lisp abstractions using Vedic Sanskrit standards
+ * And so clearly articulate the direct parallels.
+
+# Conclusion
+
+While I will attempt a A "Version 2" subtitled "A More Generalist Elaboration", I _deeply_ believe that actually a "Version 3: A Truly All-Encompassing Elaboration" needs to be written. I am not, as yet, capable of it but there are plenty who are. And I hope someone does it. And if they do, I hope that their work will be entitled "Sanskrit Interpreted Computation and Programming", in deference to the high standard of the modern work that so completely and delightfully imparts the reasoning necessary to express not only the poetic verisimilitude but also the hard-nosed engineering design features that are identically leveraged by the world of Lisp as well as the world of Sanskrit.
+
+Thanks for reading so far!
+- Aditya
 
 ----------------------------------------------------------------------------------------------------------
-
+ 
 # POSTSCRIPT: Fantasy-filled Food For Thought
 
 All CS people (particularly Lispers) know this well:
-A particular procedure may require itself to be augmented, at run time, by another procedure or even a complete program, outside of itself, as a _precondition_ for complete and/or error-free execution.
+A particular procedure may require itself to be __augmented__, at run time, by another procedure or even a complete program, outside of itself, as a _precondition_ for complete and/or error-free execution.
 
 Now consider this: 
 It is a widespread and well known Sanskritic tradition to invoke _the name_ of an appropriate "God" _before commencing_ a certain type of task. Such an invocation is done in a very particular manner viz "Aum <God X's name> Namaha". 
@@ -63,7 +165,7 @@ It is a widespread and well known Sanskritic tradition to invoke _the name_ of a
 This may readily translate to: 
  * Interrupt to Modify Global Environment (procedure named "Aum") + 
  * Load all known procedures associated with procedure-as-parameter <God X's name> + 
- * Parameter to modify behaviour of procedure God X's name. In this case <Namaha> modifies it to "I Bow to Thee and Commence."
+ * Parameter to modify behaviour of procedure <God X's name>. In this case <Namaha> modifies it to "I Bow to Thee and Commence."
 
 This is of course sheer fantasy. But just _suppose_ one entertains the idea. Could it at least be in the _realm_ of possibility?
 
@@ -102,5 +204,9 @@ Does this training pattern not sound like the way to program a neural network ca
 	; But it takes a long time to execute, so if you like
 	; you may also pre-load "d:\\my-schemes\\regular-coffee-break-generator.scm"
 
-**Eerily**, The very first paragraph of the SICP book reads thus:
+**And finally Grok this**, The very first paragraph of the SICP book reads thus:
  > "We are about to study the idea of a _computational process_. Computational processes are _abstract beings_ (emphasis mine) that inhabit computers. As they evolve, processes manipulate other abstract things called _data_. The evolution of a process is directed by a _pattern_ of _rules_ called a _program_. People create programs to direct processes. In effect, we conjure the spirits of the computer with our spells.
+
+----------------------------
+# After-thought: "Communicating With Aliens" - Connect to Alan Kay's SRII Keynote
+ * Scanned through some of the paapers presented in "Proceedings of First International Symposium on Sanskrit Computational Linguistics" (INRIA, October 2007). These __appear__ too "complexified". The past has too many details. Application must be new, and allowed to evolve anew. Gut-feeling says a purely symbolic or symbols-first implementation on computers will lead us astray. The sound comes first. Symbols are only backup. So all primitive symbols are useless - and hence, inductively, all abstractions will also be meaningless - if the primitive sound is not first encoded within the __standard__. The outcome of a purely symbolic implementation will be a system who's core standard cannot be trusted to evolve reliably - because it will be dissociated from human evolution. However, if primitive sounds are modelled on the computer, then methods of primitive abstractions specified for those, then primitive symbols defined, then all possible "onto" meanings assigned to the primitive symbols, then means of combination for those specified... all the way up to metalingual abstraction et al.; then we might start getting somewhere with Sanskrit Interpreted Computation and Processing. In other words, do a straight implementation without hyper-analyzing the ways to reinvent the wheel first... Though all deductive analysis is welcome, as a computtional medium, it was designed to *evolve* with *use*, i.e. without any further need of re-analysis. At any rate, even if the sound-encoded system does not evolve with human sound-evolution, it will still work as-is 10,000 or 100,000 years hence, inside the spirits of computers, and will also be open to standards revision if we do change a whole lot by then. Imagine - a vowel at ~4,000 Hz may be frequency modulated to any range - and so we may evolve a universal standard way to objectively negotiate meaning and "communicate with aliens" - like how Alan Kay cites in his SRII talk. Of course science people may have already prototyped it, but what the hell- these are my 2 bits :)
