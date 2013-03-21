@@ -1,11 +1,10 @@
-; -*- Scheme -*-
 ; Ex. 1.17 "Fast-multiplication"
     ; This procedure to multiply, using only addition, grows by 
     ; theta(log n) steps and in theta(log n) space owing to 
     ; deferred operations.
 
 (define (* a b)
-  ; I displaying object * ONLY as a quick-n-dirty way to visually 
+  ; I displaying object '*' ONLY as a quick-n-dirty way to visually 
   ; verify order of growth.
   (display *)
   (display " ")
@@ -14,7 +13,7 @@
 	(else (+ a (double (* a (halve (- b 1))))))))
 
 
-    ; (halve) as a black-box abstraction
+; (halve) as a black-box abstraction
     ; Strictly speaking, one can argue that division and remainder 
     ; are illegal primitives based on the wording of the question. 
     ; However, since I use halve as a black-box abstraction, 
