@@ -1,4 +1,4 @@
-;Accept three numbers and sum the largest two
+;Accept three numbers and sum the squares of the largest two
 
 (define (square x) (* x x))
 
