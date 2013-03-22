@@ -3,15 +3,24 @@
     ; theta(log n) steps and in theta(log n) space owing to 
     ; deferred operations.
 
+; (define (* a b)
+  ; ; I displaying object '*' ONLY as a quick-n-dirty way to visually 
+  ; ; verify order of growth.
+  ; (display *)
+  ; (display " ")
+  ; (cond ((= b 0) 0)
+	; ((halve b) (double (* a (halve b))))
+	; (else (+ a (double (* a (halve (- b 1))))))))
+
 (define (* a b)
-  ; I displaying object '*' ONLY as a quick-n-dirty way to visually 
+  ; I display object '*' ONLY as a quick-n-dirty way to visually 
   ; verify order of growth.
   (display *)
   (display " ")
   (cond ((= b 0) 0)
-	((halve b) (double (* a (halve b))))
-	(else (+ a (double (* a (halve (- b 1))))))))
-
+        ((= b 1) a)
+        ((halve b) (* (double a) (halve b)))
+        (else (+ a (* a (- b 1))))))
 
 ; (halve) as a black-box abstraction
     ; Strictly speaking, one can argue that division and remainder 
