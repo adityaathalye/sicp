@@ -1,0 +1,70 @@
+(search-primes 10000000000 3)
+
+10000000019***749.0000000000023
+10000000033***686.
+10000000061***624.0000000000023
+Done
+;Unspecified return value
+
+
+(search-primes 1000000000 3)
+
+1000000007***201.99999999999818
+1000000009***406.0000000000059
+1000000021***343.0000000000035
+Done
+;Unspecified return value
+
+
+(search-primes 100000000 3)
+
+100000007***125.
+100000037***125.
+100000039***125.
+Done
+;Unspecified return value
+
+
+(search-primes 10000000 3)
+
+10000019***30.999999999998806
+10000079***32.00000000000358
+10000103***31.999999999996476
+Done
+;Unspecified return value
+
+
+(search-primes 1000000 3)
+
+1000003***0.
+1000033***0.
+1000037***15.999999999998238
+Done
+;Unspecified return value
+
+
+(search-primes 100000 3)
+
+100003***0.
+100019***15.000000000000568
+100043***0.
+Done
+;Unspecified return value
+
+
+(search-primes 10000 3)
+
+10007***0.
+10009***0.
+10037***0.
+Done
+;Unspecified return value
+
+
+(search-primes 1000 3)
+
+1009***0.
+1013***0.
+1019***0.
+Done
+;Unspecified return value
