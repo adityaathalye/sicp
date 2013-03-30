@@ -55,8 +55,15 @@
 ; And it is not hard to see why the null-value for the product of 
     ; series is 1 (same reason why it is zero for sum of series).
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; n-FACTORIAL    
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; The product-of-series expression can be easily reduced to n!
 (define (factorial n)
     (accumulate * 1 identify 1 increment n))
+
     
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; SUM OF SQUAREs OF INTEGERS
@@ -69,6 +76,7 @@
 
 (define (sum-of-squares a b)
     (accumulate + 0 square a increment b))
+
 
 ; Sum the cube of series
 (define (cube x) (* x x x))
@@ -85,14 +93,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (integral f a b dx)
-
+    
     (define (add-dx x) (+ x dx))
     
     (if (<= dx 0) 
-        "Cannot compute"
+        "Cannot compute" ; If condition evaluates to true
         (* (accumulate + 0 f (+ a (/ dx 2.0)) add-dx b)
            dx)))
             
+
 ; And so on... You get the picture :)
 
     
