@@ -78,41 +78,21 @@
 
     
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; NUMERICAL INTEGRATION USING SIMPSONS RULE
+; NUMERICAL INTEGRATION of a function f using the rule:
+; integral f over lim a-to-b = [f(a + dx/2) + 
+;                               f(a + dx + dx/2) + 
+;                               f(a + 2dx + dx/2) + ... ]*dx
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (simpsons-rule f a b n)
-    ; n must always be even
-    (define n-even
-        (if (even? n) n (+ n 1)))
+(define (integral f a b dx)
 
-    ; h is the smallest increment
-    (define h 
-        (/ (- b a) n-even))
-
-    ; Apply the correct multiplier to each yk to create 
-    ; a single summable term
-    (define (term x)
-        (* (cond ((= (/ x h) n-even) 1.0)
-                 ((even? (/ x h)) 2.0)
-                 (else 4.0))
-           (f (+ a x))))
-           
-    ; The transform that 'sum' uses to increment each new yk term
-    (define (next m) 
-        (+ m h))
-
-    ; Invoke the computation using the 'sum' procedure. Note that 
-    ; the 0-th term is added as the logic starts computing from
-    ; the 1-st term.
-    (if (<= n 0) 
-        "Cannot compute"
-        (* (/ h 3.0) (+ (f a) 
-                        (accumulate + 0 term h next (- b a))))))
-        
-(define (even? x)
-    (= (remainder x 2) 0))
+    (define (add-dx x) (+ x dx))
     
+    (if (<= dx 0) 
+        "Cannot compute"
+        (* (accumulate + 0 f (+ a (/ dx 2.0)) add-dx b)
+           dx)))
+            
 ; And so on... You get the picture :)
 
     
@@ -133,18 +113,28 @@
     ; is very bad--I reckon it grows non-linearly with b.
 
 ; (sum-of-series 1 10)
+    ; ;Expected Value: 55
+
 
 ; (product-of-series 1 10)
+    ; ;Expected Value: 3628800
+
 
 ; (factorial 10)
+    ; ;Expected Value: 3628800
 
-; (sum-of-squares 1 10)
 
-; (sum-of-cubes 1 10)
+; (sum-of-squares 1 6)
+    ; ;Expected Value: 91
 
-; (simpsons-rule cube 0 1 1000)
+
+; (sum-of-cubes 1 4)
+    ; ;Expected Value: 100
+
+
+; (integral cube 0 1 0.001)
+    ; ; Expected Value: 0.249999875000001
     ; ; Gives you the integral of cube between 0 and 1, with 'dx' 
-    ; ; proportional to 1/1000. 
-    ; ; (The exact value of such an integral is 1/4.)
+    ; ; proportional to 1/1000. (Its exact value is 1/4.)
     
     
