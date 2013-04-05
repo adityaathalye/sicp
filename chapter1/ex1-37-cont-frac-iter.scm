@@ -9,7 +9,7 @@
 
 (define (cont-frac d n k)
     (define (cont-frac-iter result count)
-      (if (<= count 2)
+      (if (= count 1)
           (/ (n 1) result)
           (cont-frac-iter (+ (d (- count 1)) (/ (n count) result))
                           (- count 1))))
