@@ -20,11 +20,11 @@
     (try first-guess))
         
         
-(define (x-to-x x)
+(define (x-exp-x x)
   (fixed-point (lambda (x) (/ (log 1000) (log x)))
 	       1.1))
            
-(define (x-to-x-avg-damped x)
+(define (x-exp-x-avg-damped x)
   (fixed-point (lambda (y) (average y (/ (log 1000) (log x))))
   1.1))
 
