@@ -1,0 +1,336 @@
+; Dump of experiments carried out with the procedure I designed 
+; for ex. 1.45. The experiments led to the observation that 
+; the number of average damping operations required, grows in 
+; proportion to the natural logarithm of n, when wish to find the 
+; n-th root of a term.
+
+(load "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm")
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+(successive-sq 2 8)
+;Value: 64
+
+;Value: 64
+
+(expt 2 100)
+;Value: 1267650600228229401496703205376
+
+;Value: 1024
+
+;The procedure #[compiled-procedure 12 ("arith" #xd0) #xf #x14aaa13] has been called with 2 arguments; it requires exactly 1 argument.
+;To continue, call RESTART with an option number:
+; (RESTART 1) => Return to read-eval-print level 1.
+;Start debugger? (y or n): n
+
+(restart 1)
+;Abort!
+
+(nth-root 1267650600228229401496703205376 50)
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Value: 1.4142119587945339
+
+;Value: 2.0000038760178884
+
+;Value: 1.4640870561350117
+
+;Abort!
+
+;Value: 1.414214491319992
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Value: 2.0000011830103324
+
+;Value: 4.000002684062862
+
+;Value: 2.2974013078130096
+
+;Value: 2.000002162317112
+
+;Value: 1.8114475458917432
+
+;Value: 1.6817928305074292
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+;Abort!
+
+
+;Abort!
+
+;Value: 1.6817983934103364
+
+;Value: 1.6817983934103364
+
+;Value: 1.6817983934103364
+
+;Value: 1.6818202130462856
+
+;Abort!
+
+;Quit!
+
+;Abort!
+
+;Abort!
+
+
+;Value: 1.6817983934103364
+
+;Value: 1.6816492697112218
+
+;Value: 1.8114439973325949
+
+;Value: 1.8114590805196271
+
+;Value: 1.811282963814551
+
+(expt 2 8)
+;Value: 256
+
+(expt 2 2)
+;Value: 4
+
+(expt 2 3)
+;Value: 8
+
+(expt 2 4)
+;Value: 16
+
+(expt 2 5)
+;Value: 32
+
+(load "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm")
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+(expt 0.5 1000)
+;Value: 9.332636185032189e-302
+
+;Value: 7.888609052210118e-31
+
+;Value: 1267650600228229401496703205376
+
+(nth-root 1267650600228229401496703205376 200)
+;Value: 1.4142167137476003
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Value: 2.0000032790812043
+
+;Value: 4.000001001328863
+
+(sqrt 100)
+;Value: 10
+
+;Value: 14.142135623730951
+
+;Value: 5.298317366548036
+
+;The procedure #[compiled-procedure 13 ("arith" #xd1) #xf #x14aab7f] has been called with 2 arguments; it requires exactly 1 argument.
+;To continue, call RESTART with an option number:
+; (RESTART 2) => Return to read-eval-print level 2.
+; (RESTART 1) => Return to read-eval-print level 1.
+;Start debugger? (y or n): n
+
+;Unbound variable: ln
+;To continue, call RESTART with an option number:
+; (RESTART 3) => Specify a value to use instead of ln.
+; (RESTART 2) => Define ln to a given value.
+; (RESTART 1) => Return to read-eval-print level 1.
+;Start debugger? (y or n): n
+
+;Value: 4.605170185988092
+
+
+(load "d:\\github\\sicp\\chapter1\\ex1-19-clever-fib.scm")
+;Loading "d:\\github\\sicp\\chapter1\\ex1-19-clever-fib.scm"... done
+;Value: square
+
+(fib 10)
+;Value: 55
+
+;Value: 13
+
+(load "d:\\github\\sicp\\chapter1\\ex1-28-miller-rabin.scm")
+;Loading "d:\\github\\sicp\\chapter1\\ex1-28-miller-rabin.scm"... done
+;Value: even?
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-28-miller-rabin.scm"... done
+;Value: even?
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-28-miller-rabin.scm"... done
+;Value: even?
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-28-miller-rabin.scm"... done
+;Value: even?
+
+(load "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm")
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+;Loading "d:\\github\\sicp\\chapter1\\ex1-45-nth-root.scm"... done
+;Value: square
+
+(nth-root 9.332636185032189e-302 1000)
+;Value: .4999945302057134
+
+;Value: .499995273048583
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Abort!
+;Start debugger? (y or n): n
+
+
+;Value: .4999945302057134
+
+;Value: .4999945302057134
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Value: .4999945302057134
+
+;Value: .499995273048583
+
+;Value: .499995273048583
+
+;Value: .5000000159592383
+
+;Abort!
+;Start debugger? (y or n): n
+
+(log 1000)
+;Value: 6.907755278982137
+
+(log 4)
+;Value: 1.3862943611198906
+
+(log 5)
+;Value: 1.6094379124341003
+
+(log 10)
+;Value: 2.302585092994046
+
+(expt 2 10)
+;Value: 1024
+
+(nth-root 1024 10)
+;Value: 2.0000011830103324
+
+;Abort!
+;Start debugger? (y or n): n
+
+;Value: 2.0000011830103324
