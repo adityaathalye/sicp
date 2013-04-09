@@ -1,5 +1,6 @@
 ; Ex. 2.1 A better implementation of rational arithmetic
 
+    
 ; Construct rational number as a pair object. 
 ; ; This improves upon the make-rat procedure of Section 2.1.2.
 (define (make-rat n d) 
@@ -10,7 +11,7 @@
       (cond ((= n 0) 
              (cons 0 1))
             ((= d 0) 
-             (error "The denominator must be non-zero! " d))
+             (error "The denominator must not be zero: " d))
             (same-sign?
              (cons norm-n norm-d))
             (else
