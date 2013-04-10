@@ -1,4 +1,4 @@
--*-Scheme-*-
+;-*-Scheme-*-
 
 ; Fizzbuzz: For the numbers from 1 to 100,
 
@@ -14,8 +14,8 @@
 ; BEFORE the conditions, fizzbuzz is printed in ASCENDING order.
 (define (fizzbuzz-a n)
     (if (> n 1)
-    (fizzbuzz-a (- n 1))
-    (display "Done!"))
+        (fizzbuzz-a (- n 1))
+        (display "Done!"))
         
     (if (= (modulo n 15) 0)
         (display "fizzbuzz ")
@@ -40,8 +40,8 @@
                     (display "- ")
                     n)))
     (if (> n 1)
-    (fizzbuzz-b (- n 1))
-    (display "Done!")))
+        (fizzbuzz-b (- n 1))
+        (display "Done!")))
     
 ; This version causes an error: "The object #t is not applicable."
 ; Note how the conditional is used... a direct translation of the
