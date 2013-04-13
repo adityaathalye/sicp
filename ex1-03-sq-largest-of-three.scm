@@ -10,7 +10,10 @@
 	((and (> a c) (> c b)) (sum-sq a c))
 	((and (> c a) (> a b)) (sum-sq a c))
 	((and (> c b) (> b a)) (sum-sq c b))
-	((and (> b c) (> c a)) (sum-sq c b))))
+	((and (> b c) (> c a)) (sum-sq c b))
+    ; If none of the above conditions evaluate, then all 3 values
+    ; must be equal.
+    (else (sum-sq a b))))
 
 
 
