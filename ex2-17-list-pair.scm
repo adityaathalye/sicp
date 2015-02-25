@@ -255,8 +255,16 @@
 ;; use cadr. We replace all those cadrs with cdr.
 
 
+;; Ex. 2.30 square-tree
 
-
+(define (square-tree tree)
+  (define (square-tree-hlp xs ys)
+    (cond ((null? xs) xs)
+          ((not (pair? xs)) ((lambda (x) (* x x))
+                             xs))
+          (else (cons (square-tree-hlp (car xs) ys)
+                      (square-tree-hlp (cdr xs) ys)))))
+  (square-tree-hlp tree (list)))
 
 
 
