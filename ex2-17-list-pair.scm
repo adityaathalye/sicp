@@ -258,14 +258,92 @@
 ;; Ex. 2.30 square-tree
 
 (define (square-tree tree)
-  (define (square-tree-hlp xs ys)
-    (cond ((null? xs) xs)
-          ((not (pair? xs)) ((lambda (x) (* x x))
-                             xs))
-          (else (cons (square-tree-hlp (car xs) ys)
-                      (square-tree-hlp (cdr xs) ys)))))
-  (square-tree-hlp tree (list)))
+  (cond ((null? tree) tree)
+        ((not (pair? tree)) ((lambda (x) (* x x)) tree))
+        (else (cons (square-tree (car tree))
+                    (square-tree (cdr tree))))))
+
+(define (square-tree-map tree)
+  (map (lambda (x)
+         (if (pair? x)
+             (square-tree-map x)
+             (* x x)))
+       tree))
 
 
+;; Ex. 2.30 tree-map
+(define (tree-map f tree)
+  (map (lambda (x)
+         (if (pair? x)
+             (tree-map f x)
+             (f x)))
+       tree))
 
 
+;; Ex. 2.31 Square-tree with tree-map
+(define (square x) (* x x))
+
+(define (square-tree-with-tree-map tree)
+  (tree-map square tree))
+
+(equal? (square-tree-with-tree-map
+         (list 1
+               (list 2 (list 3 4) 5)
+               (list 6 7)))
+        '(1 (4 (9 16) 25) (36 49)))
+
+
+;; Ex. 2.32 Subsets
+(define (subsets s)
+  (if (null? s)
+      (list '())
+      (let ((rest (subsets (cdr s))))
+        (append rest (map (lambda (x) 
+                            (cons (car s) x)) 
+                          rest)))))
+
+(subsets '(1 2 3))
+
+;(append (subsets '(2 3))
+;        (map ??? (subsets '(2 3))))
+;
+;(append (append (subsets '(3))
+;                (map ??? (subsets '(3))))
+;        (map ??? (append (subsets '(3))
+;                         (map ??? (subsets '(3))))))
+;
+;(subsets '(3))
+;(append (subsets '())
+;        (map ??? (subsets '())))
+;
+;
+;(append (append (append (subsets '())
+;                        (map ??? (subsets '())))
+;                (map ??? (append (subsets '())
+;                                 (map ??? (subsets '())))))
+;        (map ??? (append (append (subsets '())
+;                                 (map ??? (subsets '())))
+;                         (map ??? (append (subsets '())
+;                                          (map ??? (subsets '())))))))
+;
+;
+; Intuitively, '???' has to do something about the car of s, 
+; which we would otherwise lose at each step. 
+;
+;
+;(append (append (append '()
+;                        (map ??? '()))
+;                (map ??? (append '()
+;                                 (map ??? '()))))
+;        (map ??? (append (append '()
+;                                 (map ??? '()))
+;                         (map ??? (append '()
+;                                          (map ??? '()))))))
+;
+;(append (append (map ??? '())
+;                (map ??? (map ??? '())))
+;        (map ??? (append (map ??? '())
+;                         (map ??? (map ??? '())))))
+;
+;
+;
