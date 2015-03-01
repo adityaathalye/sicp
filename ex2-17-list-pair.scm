@@ -347,3 +347,180 @@
 ;
 ;
 ;
+
+;; Ex. 2.33 map
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (my-map p sequence)
+  (accumulate (lambda (x y) (cons (p x) y)) 
+              '()
+              sequence))
+
+(define (my-append seq1 seq2)
+  (accumulate cons seq2 seq1))
+
+(define (my-length sequence)
+  (accumulate (lambda (x y) (+ 1 y))
+              0
+              sequence))
+
+
+;; Ex. 2.34 Horner's rule
+(define (horner-eval x coefficient-sequence)
+  (accumulate (lambda (this-coeff higher-terms)
+                (+ this-coeff
+                   (* higher-terms x)))
+              0
+              coefficient-sequence))
+
+(equal? (+ 1 (* 3 2) (* 5 2 2 2) (* 2 2 2 2 2))
+        (horner-eval 2 (list 1 3 0 5 0 1)))
+
+
+;; Ex. 2.35 count-leaves-mapreduce
+(define (count-leaves t)
+  (accumulate + 0 (map (lambda (_) 1)
+                       (fringe2 t))))
+
+(= (count-leaves '(1 (4 (9 16) 25) (36 49)))
+   7)
+
+
+;; Ex. 2.36 accumulate-n
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      '()
+      ;; Accumulate op over a sequence of the first item of
+      ;; each sequence and cons the result of that to the
+      ;; result of accumulate-n over a sequence of the rest of
+      ;; each sequence.
+      (cons (accumulate op init (map car seqs))
+            (accumulate-n op init (map cdr seqs)))))
+
+
+
+; DIGRESSION: Solution to 'Sequs Horriblis', 4clojure #112
+; https://www.4clojure.com/problem/solutions/112
+; a.k.a.
+; In which one rids oneself of an old deamon (and salvages 
+; the tattered wind-blown remains of one's ego.)
+
+; Solution to the 'Sequs Horriblis' problem from 4clojure.
+
+
+; QUESTION: 
+; Create a function which takes an integer and a nested collection
+; of integers as arguments.
+; Analyze the elements of the input collection and return a sequence 
+; which maintains the nested structure, and which includes all elements 
+; starting from the head whose sum is less than or equal to the input integer.
+
+; And one slays an old enemy thusly:
+
+; By nature processing a tree is a recursive problem.
+(define (horriblis n xs)
+  ; Base case 1. Can't process an empty list any further.
+  (if (null? xs) 
+      (list)
+      ; When xs is not null, pair? must be true. 
+      ; So we must inspect the head and the tail, and proceed
+      ; based on our findings.
+      (let ((hd (car xs))
+            (tl (cdr xs)))
+        ; Base case 2: We must stop processing right away, if the head
+        ; is a number, and its value is greater than our checksum.
+        (cond ((and (number? hd) (> hd n))
+               (list)) 
+              ; Recursive case 1: If the head 'hd' is a number and we have
+              ; not reached or exceeded checksum yet, we must hold on
+              ; to the head and process the tail 'tl'. 
+              ; Also we must retain the nested list structure. Therefore, 
+              ; 'hd' must be consed at the original head position, and 
+              ; the result of processing 'tl' must appear at the tail 
+              ; position.
+              ; Further, we must account for the value of 'hd' that we
+              ; just consumed. We must deduct it from the current checksum
+              ; and feed the new checksum to the recursive to processs 'tl'.
+              ((number? hd)
+               (cons hd 
+                     (horriblis (- n hd) tl)))
+              ; Recursive case 2: 'hd' is not a number. In this case, we must
+              ; place the result of recursively processing 'hd', at the head
+              ; position, to retain structure. In other words wrap the result, 
+              ; of processing 'hd', in a list. 
+              (else (list (horriblis n hd)))))))
+
+
+(define (horriblis2 n xs)
+  (cond ((< n 0) (list))
+        ((null? xs) (list))
+        (else (let ((fst (car xs))
+                    (rst (cdr xs)))
+                (if (number? fst)
+                    (if (> fst n)
+                        (list)
+                        (cons fst 
+                              (horriblis2 (- n fst) rst)))
+                    (list (horriblis2 n fst)))))))
+
+
+(define (horrib n xs)
+  (cond ((< n 0) (list))
+        ((null? xs) (list))
+        (else (let ((fst (car xs))
+                    (rst (cdr xs)))
+                (cond ((and (number? fst) (pair? rst) (number? (car rst)))
+                       (cons fst 
+                             (horrib (- n fst (car rst)) rst)))
+                      ((number? fst)
+                       (cons fst 
+                             (horrib (- n fst) rst)))
+                      (else (list (horrib n fst))))))))
+
+"--------------------------------"
+;#f
+(horriblis 10 '(1 2 (3 (4 5) 6) 7))
+(equal?  (horriblis 10 '(1 2 (3 (4 5) 6) 7))
+         '(1 2 (3 (4))))
+
+
+(horriblis 30 '(1 2 (3 (4 (5 (6 (7 8)) 9)) 10) 11))
+(equal?  (horriblis 30 '(1 2 (3 (4 (5 (6 (7 8)) 9)) 10) 11))
+         '(1 2 (3 (4 (5 (6 (7)))))))
+
+
+(horriblis 9 '(0 1 2 3 4 5 6 7 8))
+(equal?  (horriblis 9 '(0 1 2 3 4 5 6 7 8))
+         '(0 1 2 3))
+
+
+(horriblis 1 '(((((1))))))
+(equal?  (horriblis 1 '(((((1))))))
+         '(((((1))))))
+
+
+(horriblis 0 '(1 2 (3 (4 5) 6) 7))
+(equal?  (horriblis 0 '(1 2 (3 (4 5) 6) 7))
+         '())
+
+
+(horriblis 0 '(0 0 (0 (0))))
+(equal?  (horriblis 0 '(0 0 (0 (0))))
+         '(0 0 (0 (0))))
+
+
+(horriblis 1 '(-10 (1 (2 3 (4 5 (6 7 (8)))))))
+(equal?  (horriblis 1 '(-10 (1 (2 3 (4 5 (6 7 (8)))))))
+         '(-10 (1 (2 3 (4)))))
+
+
+
+
+
+
+
+
