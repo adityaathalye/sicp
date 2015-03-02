@@ -402,16 +402,13 @@
             (accumulate-n op init (map cdr seqs)))))
 
 
-
+"----------------- Sequs Horriblis Begins ---------------------------------"
 ; DIGRESSION: Solution to 'Sequs Horriblis', 4clojure #112
 ; https://www.4clojure.com/problem/solutions/112
 ; a.k.a.
-; In which one rids oneself of an old deamon (and salvages 
+; In which one rids oneself of an old demon (and salvages 
 ; the tattered wind-blown remains of one's ego.)
-
-; Solution to the 'Sequs Horriblis' problem from 4clojure.
-
-
+;
 ; QUESTION: 
 ; Create a function which takes an integer and a nested collection
 ; of integers as arguments.
@@ -419,40 +416,64 @@
 ; which maintains the nested structure, and which includes all elements 
 ; starting from the head whose sum is less than or equal to the input integer.
 
-; And one slays an old enemy thusly:
+; And one slays it thusly:
 
-; By nature processing a tree is a recursive problem.
+; Base case 1. 
+; Can't process an empty list any further.
+
+; Recursive case 1: 
+; 'hd' is not a number. In this case, we must place the result of 
+; recursively processing 'hd', at the head position, to retain structure. 
+; In other words, wrap the result, of processing 'hd', in a list. 
+
+; Base case 2: 
+; We must stop processing right away, if the head is a number, and its value 
+; is greater than our checksum.
+
+; Recursive case 2: 
+; If the head 'hd' is a number and we have not reached or exceeded checksum yet, 
+; we must hold on to the head and process the tail 'tl'. 
+; Also we must retain the nested list structure. Therefore, 'hd' must be 
+; consed at the original head position, and the result of processing 'tl' 
+; must appear at the tail position.
+; Further, we must account for the value of 'hd' that we just consumed. 
+; We must deduct it from the current checksum and feed the new checksum to the 
+; recursive processing of 'tl'.
+
+
 (define (horriblis n xs)
-  ; Base case 1. Can't process an empty list any further.
   (if (null? xs) 
-      (list)
-      ; When xs is not null, pair? must be true. 
-      ; So we must inspect the head and the tail, and proceed
-      ; based on our findings.
+      (list) ; Base case 1
       (let ((hd (car xs))
             (tl (cdr xs)))
-        ; Base case 2: We must stop processing right away, if the head
-        ; is a number, and its value is greater than our checksum.
+        (cond ((pair? hd) (list (horriblis n hd))) ; Recursive case 1
+              ((> hd n) (list)) ; Base case 2
+              (else (cons hd (horriblis (- n hd) tl))))))) ; Recursive case 2
+
+
+; Works, but the output is wrapped in an extra list.
+; '((sequence)) instead of '(sequence)
+(define (horriblis-reduce n xs)
+  (accumulate (lambda (fst _)
+                (cond ((pair? fst) (horriblis-reduce n fst))
+                      ((> fst n) (list))
+                      (else (list (cons fst 
+                                        (horriblis-reduce (- n fst) 
+                                                          (cdr xs)))))))
+              (list)
+              xs))
+
+(define (horriblis1 n xs)
+  (if (null? xs) 
+      (list)
+      (let ((hd (car xs))
+            (tl (cdr xs)))
         (cond ((and (number? hd) (> hd n))
                (list)) 
-              ; Recursive case 1: If the head 'hd' is a number and we have
-              ; not reached or exceeded checksum yet, we must hold on
-              ; to the head and process the tail 'tl'. 
-              ; Also we must retain the nested list structure. Therefore, 
-              ; 'hd' must be consed at the original head position, and 
-              ; the result of processing 'tl' must appear at the tail 
-              ; position.
-              ; Further, we must account for the value of 'hd' that we
-              ; just consumed. We must deduct it from the current checksum
-              ; and feed the new checksum to the recursive to processs 'tl'.
               ((number? hd)
                (cons hd 
-                     (horriblis (- n hd) tl)))
-              ; Recursive case 2: 'hd' is not a number. In this case, we must
-              ; place the result of recursively processing 'hd', at the head
-              ; position, to retain structure. In other words wrap the result, 
-              ; of processing 'hd', in a list. 
-              (else (list (horriblis n hd)))))))
+                     (horriblis1 (- n hd) tl)))
+              (else (list (horriblis1 n hd)))))))
 
 
 (define (horriblis2 n xs)
@@ -481,8 +502,7 @@
                              (horrib (- n fst) rst)))
                       (else (list (horrib n fst))))))))
 
-"--------------------------------"
-;#f
+
 (horriblis 10 '(1 2 (3 (4 5) 6) 7))
 (equal?  (horriblis 10 '(1 2 (3 (4 5) 6) 7))
          '(1 2 (3 (4))))
@@ -518,9 +538,57 @@
          '(-10 (1 (2 3 (4)))))
 
 
+"----------------- Sequs Horriblis Ends ---------------------------------"
+
+;; Ex. 2.37 Matrix math
+
+;; Given two vectors v and w, 
+;; Return the sum Sigma-i(vi * wi)
+(define (dot-product v w)
+  (accumulate + 0 (map * v w)))
+
+(dot-product '(1 2 3 4) '(1 2 3 4))
 
 
+;; Given a matrix m and vector v
+;; Return the vector t, where ti = Sigma-j(mij * vj)
+(define (matrix-*-vector m v)
+  (map (lambda (w) (dot-product v w)) 
+       m))
+
+(matrix-*-vector '((1 2 3 4) (4 5 6 6) (6 7 8 9))
+                 '(1 2 3 4))
 
 
+;; Given a matrix m, 
+;; Return the matrix n, where nij = mji
+(define (transpose mat)
+  (accumulate-n cons (list) mat))
+
+(transpose '((1 2 3 4) 
+             (4 5 6 6) 
+             (6 7 8 9)))
+
+
+;; Given two matrices m and n,
+;; Return a matrix p such that
+;; pij = Sigma-k(m-ik * n-kj)
+
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (v) (matrix-*-vector cols v))
+         m)))
+
+(matrix-*-matrix '((1 2 3) 
+                   (4 5 6) 
+                   (7 8 9))
+                 '((9 8 7) 
+                   (6 5 4) 
+                   (3 2 1)))
+
+(matrix-*-matrix '((1 2) 
+                   (3 4))
+                 '((5 6) 
+                   (7 8)))
 
 
