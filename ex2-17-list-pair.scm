@@ -14,7 +14,7 @@
   (define (my-reverse-hlp xs rs)
     (if (null? xs)
         rs
-        (my-reverse-hlp (cdr xs) 
+        (my-reverse-hlp (cdr xs)
                         (cons (car xs) rs))))
   ;; `nil` doesn't seem to work, but an empty list does.
   (my-reverse-hlp xs (list)))
@@ -48,7 +48,7 @@
 ;;    (cc 100 us-coins-alt-1)
 ;;    (cc 100 us-coins-alt-2))
 ;; #t
-;; We are computing all possible ways of counting change. 
+;; We are computing all possible ways of counting change.
 ;; The cc algorithm generates a recursive process,
 ;; which will grow unevaluated branches as long as amount > 0
 ;; and there are coin values left to cover.
@@ -56,14 +56,14 @@
 
 
 
-;; Ex. 2.20 same-parity to define procedures with 
+;; Ex. 2.20 same-parity to define procedures with
 ;; arbitrary number of arguments
 
 (define (same-parity x . xs)
   (let ((same-parity? (if (odd? x) odd? even?)))
     (define (same-parity-hlp ys)
       (cond ((null? ys) ys)
-            ((same-parity? (car ys)) 
+            ((same-parity? (car ys))
              (cons (car ys)
                    (same-parity-hlp (cdr ys))))
             (else (same-parity-hlp (cdr ys)))))
@@ -102,7 +102,7 @@
 ;; Ex. 2.23 for-each
 ;; This can be a simple wrapper over map, because the purpose of
 ;; for-each is to use a function to perform side-effects.
-;; Functions that use for-each can simply ignore the return 
+;; Functions that use for-each can simply ignore the return
 ;; sequence of for-each.
 (define (my-for-each f xs)
   (map f xs))
@@ -116,7 +116,7 @@
 
 
 
-;; Ex. 2.24 
+;; Ex. 2.24
 ;; > (list 1 (list 2 (list 3 4)))
 ;; (1 (2 (3 4)))
 ;;
@@ -133,17 +133,17 @@
 
 
 ;; Ex. 2.25 Our life cdr be betr
-(car 
- (cdr 
-  (car 
-   (cdr 
+(car
+ (cdr
+  (car
+   (cdr
     (cdr '(1 3 (5 7) 9))))))
 
-(car (cdr 
-      (car (cdr 
-            (car (cdr 
-                  (car (cdr 
-                        (car (cdr 
+(car (cdr
+      (car (cdr
+            (car (cdr
+                  (car (cdr
+                        (car (cdr
                               (car (cdr '(1 (2 (3 (4 (5 (6 7))))))))))))))))))
 
 (cadadr (cadadr (cadadr '(1 (2 (3 (4 (5 (6 7)))))))))
@@ -168,7 +168,7 @@
   (define (my-reverse-hlp xs rs)
     (if (null? xs)
         rs
-        (my-reverse-hlp (cdr xs) 
+        (my-reverse-hlp (cdr xs)
                         (cons (car xs) rs))))
   ;; `nil` doesn't seem to work, but an empty list does.
   (my-reverse-hlp xs (list)))
@@ -178,7 +178,7 @@
   (define (deep-reverse-hlp xs rs)
     (cond ((null? xs) rs)
           ((not (pair? xs)) xs) ;; Additional base case
-          (else 
+          (else
            (deep-reverse-hlp (cdr xs)
                              (cons (deep-reverse (car xs)) rs)))))
   (deep-reverse-hlp xs (list)))
@@ -190,7 +190,7 @@
   (define (fringe-hlp xs rs)
     (cond ((null? xs) rs)
           ((not (pair? xs)) (cons xs rs))
-          (else 
+          (else
            (fringe-hlp (cdr xs)
                        (fringe-hlp (car xs) rs)))))
   (reverse (fringe-hlp xs (list))))
@@ -201,7 +201,7 @@
   (define (fringe-hlp xs rs)
     (cond ((null? xs) rs)
           ((not (pair? xs)) (cons xs rs))
-          (else 
+          (else
            (fringe-hlp (car xs) ; car instead of cdr, w.r.t `fringe`, above
                        (fringe-hlp (cdr xs) rs))))) ; cdr instead of car
   (fringe-hlp xs (list)))
@@ -213,7 +213,7 @@
   (define (fringe-hlp xs rs)
     (cond ((null? xs) rs)
           ((not (pair? xs)) (cons xs rs))
-          (else 
+          (else
            (fringe-hlp (cdr xs)
                        ;; append is bad. Adds O(n) time at each step.
                        (append rs (fringe3 (car xs)))))))
@@ -298,8 +298,8 @@
   (if (null? s)
       (list '())
       (let ((rest (subsets (cdr s))))
-        (append rest (map (lambda (x) 
-                            (cons (car s) x)) 
+        (append rest (map (lambda (x)
+                            (cons (car s) x))
                           rest)))))
 
 (subsets '(1 2 3))
@@ -327,8 +327,8 @@
 ;                                          (map ??? (subsets '())))))))
 ;
 ;
-; Intuitively, '???' has to do something about the car of s, 
-; which we would otherwise lose at each step. 
+; Intuitively, '???' has to do something about the car of s,
+; which we would otherwise lose at each step.
 ;
 ;
 ;(append (append (append '()
@@ -356,7 +356,7 @@
           (accumulate op initial (cdr sequence)))))
 
 (define (my-map p sequence)
-  (accumulate (lambda (x y) (cons (p x) y)) 
+  (accumulate (lambda (x y) (cons (p x) y))
               '()
               sequence))
 
@@ -402,147 +402,9 @@
             (accumulate-n op init (map cdr seqs)))))
 
 
-"----------------- Sequs Horriblis Begins ---------------------------------"
-; DIGRESSION: Solution to 'Sequs Horriblis', 4clojure #112
-; https://www.4clojure.com/problem/solutions/112
-; a.k.a.
-; In which one rids oneself of an old demon (and salvages 
-; the tattered wind-blown remains of one's ego.)
-;
-; QUESTION: 
-; Create a function which takes an integer and a nested collection
-; of integers as arguments.
-; Analyze the elements of the input collection and return a sequence 
-; which maintains the nested structure, and which includes all elements 
-; starting from the head whose sum is less than or equal to the input integer.
-
-; And one slays it thusly:
-
-; Base case 1. 
-; Can't process an empty list any further.
-
-; Recursive case 1: 
-; 'hd' is not a number. In this case, we must place the result of 
-; recursively processing 'hd', at the head position, to retain structure. 
-; In other words, wrap the result, of processing 'hd', in a list. 
-
-; Base case 2: 
-; We must stop processing right away, if the head is a number, and its value 
-; is greater than our checksum.
-
-; Recursive case 2: 
-; If the head 'hd' is a number and we have not reached or exceeded checksum yet, 
-; we must hold on to the head and process the tail 'tl'. 
-; Also we must retain the nested list structure. Therefore, 'hd' must be 
-; consed at the original head position, and the result of processing 'tl' 
-; must appear at the tail position.
-; Further, we must account for the value of 'hd' that we just consumed. 
-; We must deduct it from the current checksum and feed the new checksum to the 
-; recursive processing of 'tl'.
-
-
-(define (horriblis n xs)
-  (if (null? xs) 
-      (list) ; Base case 1
-      (let ((hd (car xs))
-            (tl (cdr xs)))
-        (cond ((pair? hd) (list (horriblis n hd))) ; Recursive case 1
-              ((> hd n) (list)) ; Base case 2
-              (else (cons hd (horriblis (- n hd) tl))))))) ; Recursive case 2
-
-
-; Works, but the output is wrapped in an extra list.
-; '((sequence)) instead of '(sequence)
-(define (horriblis-reduce n xs)
-  (accumulate (lambda (fst _)
-                (cond ((pair? fst) (horriblis-reduce n fst))
-                      ((> fst n) (list))
-                      (else (list (cons fst 
-                                        (horriblis-reduce (- n fst) 
-                                                          (cdr xs)))))))
-              (list)
-              xs))
-
-(define (horriblis1 n xs)
-  (if (null? xs) 
-      (list)
-      (let ((hd (car xs))
-            (tl (cdr xs)))
-        (cond ((and (number? hd) (> hd n))
-               (list)) 
-              ((number? hd)
-               (cons hd 
-                     (horriblis1 (- n hd) tl)))
-              (else (list (horriblis1 n hd)))))))
-
-
-(define (horriblis2 n xs)
-  (cond ((< n 0) (list))
-        ((null? xs) (list))
-        (else (let ((fst (car xs))
-                    (rst (cdr xs)))
-                (if (number? fst)
-                    (if (> fst n)
-                        (list)
-                        (cons fst 
-                              (horriblis2 (- n fst) rst)))
-                    (list (horriblis2 n fst)))))))
-
-
-(define (horrib n xs)
-  (cond ((< n 0) (list))
-        ((null? xs) (list))
-        (else (let ((fst (car xs))
-                    (rst (cdr xs)))
-                (cond ((and (number? fst) (pair? rst) (number? (car rst)))
-                       (cons fst 
-                             (horrib (- n fst (car rst)) rst)))
-                      ((number? fst)
-                       (cons fst 
-                             (horrib (- n fst) rst)))
-                      (else (list (horrib n fst))))))))
-
-
-(horriblis 10 '(1 2 (3 (4 5) 6) 7))
-(equal?  (horriblis 10 '(1 2 (3 (4 5) 6) 7))
-         '(1 2 (3 (4))))
-
-
-(horriblis 30 '(1 2 (3 (4 (5 (6 (7 8)) 9)) 10) 11))
-(equal?  (horriblis 30 '(1 2 (3 (4 (5 (6 (7 8)) 9)) 10) 11))
-         '(1 2 (3 (4 (5 (6 (7)))))))
-
-
-(horriblis 9 '(0 1 2 3 4 5 6 7 8))
-(equal?  (horriblis 9 '(0 1 2 3 4 5 6 7 8))
-         '(0 1 2 3))
-
-
-(horriblis 1 '(((((1))))))
-(equal?  (horriblis 1 '(((((1))))))
-         '(((((1))))))
-
-
-(horriblis 0 '(1 2 (3 (4 5) 6) 7))
-(equal?  (horriblis 0 '(1 2 (3 (4 5) 6) 7))
-         '())
-
-
-(horriblis 0 '(0 0 (0 (0))))
-(equal?  (horriblis 0 '(0 0 (0 (0))))
-         '(0 0 (0 (0))))
-
-
-(horriblis 1 '(-10 (1 (2 3 (4 5 (6 7 (8)))))))
-(equal?  (horriblis 1 '(-10 (1 (2 3 (4 5 (6 7 (8)))))))
-         '(-10 (1 (2 3 (4)))))
-
-
-"----------------- Sequs Horriblis Ends ---------------------------------"
-
 ;; Ex. 2.37 Matrix math
 
-;; Given two vectors v and w, 
+;; Given two vectors v and w,
 ;; Return the sum Sigma-i(vi * wi)
 (define (dot-product v w)
   (accumulate + 0 (map * v w)))
@@ -553,20 +415,20 @@
 ;; Given a matrix m and vector v
 ;; Return the vector t, where ti = Sigma-j(mij * vj)
 (define (matrix-*-vector m v)
-  (map (lambda (w) (dot-product v w)) 
+  (map (lambda (w) (dot-product v w))
        m))
 
 (matrix-*-vector '((1 2 3 4) (4 5 6 6) (6 7 8 9))
                  '(1 2 3 4))
 
 
-;; Given a matrix m, 
+;; Given a matrix m,
 ;; Return the matrix n, where nij = mji
 (define (transpose mat)
   (accumulate-n cons (list) mat))
 
-(transpose '((1 2 3 4) 
-             (4 5 6 6) 
+(transpose '((1 2 3 4)
+             (4 5 6 6)
              (6 7 8 9)))
 
 
@@ -579,16 +441,57 @@
     (map (lambda (v) (matrix-*-vector cols v))
          m)))
 
-(matrix-*-matrix '((1 2 3) 
-                   (4 5 6) 
+(matrix-*-matrix '((1 2 3)
+                   (4 5 6)
                    (7 8 9))
-                 '((9 8 7) 
-                   (6 5 4) 
+                 '((9 8 7)
+                   (6 5 4)
                    (3 2 1)))
 
-(matrix-*-matrix '((1 2) 
+(matrix-*-matrix '((1 2)
                    (3 4))
-                 '((5 6) 
+                 '((5 6)
                    (7 8)))
 
 
+;; Ex. 2.38 fold-left
+(define (fold-left op initial sequence)
+  (define (iter result rest)
+    (if (null? rest)
+        result
+        (iter (op result (car rest))
+              (cdr rest))))
+  (iter initial sequence))
+
+;; 'op' must be commutative, in order to guarantee
+;; that fold-right and fold-left will produce the
+;; same values for any sequence.
+;; e.g. addition and multiplication are commutative,
+;; i.e. 1 + 2 = 2 + 1 and 3 * 5 = 5 * 3
+;; but division and subtraction are not,
+;; i.e 1 / 2 != 2 / 1 and 1 - 2 != 2 - 1
+;; Therefore (fold-right * 1 '(1 2 3 4)) will produce
+;; the same result as (fold-left * 1 '(1 2 3 4))
+
+(define fold-right accumulate)
+
+(fold-right / 1 (list 1 2 3))
+(fold-left / 1 (list 1 2 3))
+(fold-right list '() (list 1 2 3))
+(fold-left list '() (list 1 2 3))
+
+
+;; Ex. 2.39 reverse in terms of fold-right and fold-left
+
+(define (my-reverse-foldr sequence)
+  (fold-right (lambda (x y) (append y (list x)))
+              '()
+              sequence))
+(my-reverse-foldr '(1 2 3 4))
+
+
+(define (my-reverse-foldl sequence)
+  (fold-left (lambda (x y) (cons y x))
+             '()
+             sequence))
+(my-reverse-foldl '(1 2 3 4))
