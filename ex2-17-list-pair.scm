@@ -70,6 +70,21 @@
     (same-parity-hlp (cons x xs))))
 
 
+(define (same-parity2 x . xs)
+  (let ((same-parity? (if (odd? x) odd? even?)))
+    (define (same-parity-hlp ys rs)
+      (cond ((null? ys) rs)
+            ((same-parity? (car ys))
+             (same-parity-hlp (cdr ys) (cons (car ys) rs)))
+            (else (same-parity-hlp (cdr ys) rs))))
+    (same-parity-hlp xs (cons x '()))))
+
+
+(equal?
+ (map same-parity  (list 1 2 3 4 5 6 7))
+ (same-parity2 (list 1 2 3 4 5 6 7))
+)
+
 ;; Ex. 2.21 square-list alternatives
 
 (define (square-list-1 items)
