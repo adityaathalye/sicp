@@ -91,3 +91,18 @@
                 (enumerate-interval 1 n)))))
 
 (prime-sum-pairs 5)
+
+(define (permutations s)
+  (if (null? s)
+      (list ())
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (permutations (remove x s))))
+               s)))
+
+
+(define (remove item s)
+  (filter (lambda (x) (not (= x item)))
+          s))
+
+(permutations (enumerate-interval 1 3))
