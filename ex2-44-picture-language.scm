@@ -75,7 +75,7 @@
    painter))
 
 
-(define (square-limit2 painter)
+(define (square-limit2 painter n)
   ((square-of-four flip-horiz identity-procedure
                    rotate180  flip-vert)
    (corner-split painter n)))
