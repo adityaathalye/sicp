@@ -65,6 +65,11 @@
 (define (make-product-naive m1 m2)
   (list '* m1 m2))
 
+
+(define (=number? x y)
+  (and (number? x) (number? y) (eq? x y)))
+
+
 (define (make-product m1 m2)
   (cond ((or (=number? m1 0) (=number? m2 0)) 0)
         ((=number? m1 1) m2)
