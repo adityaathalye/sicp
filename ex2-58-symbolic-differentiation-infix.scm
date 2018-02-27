@@ -112,3 +112,30 @@
          'x)
   'x)
  'x)
+
+
+
+;; Ex. 2.58.b Fix for standard infix algebraic notation, such as
+;; (x + 3 * (x + y + 2)), which drops "unnecessary" parentheses
+;; and assumes that multiplication is done before addition.
+
+;; Solution (TBD):
+;; Maybe we can get away with some sort of a "group-by" strategy.
+;; Perhaps we can base it on:
+;; - the associative property of addition and of multiplication
+;; - give priority to multiplications
+;; - use some sort of a look-ahead plan
+;;
+;; e.g. what if augend takes this:
+;; (e1 + e2 * e3 * e4 + e5 + e6 + e7 * e8 + e9)
+;;
+;; and produces this?
+;; (e1 + (e5 + (e6 + e9)))
+;;
+;; whereas addend produces this?
+;; ((e2 * e3 * e4) + (e7 * e8))
+;;
+;; Anything even slightly more complicated, like full infix BODMAS,
+;; will probably require a proper parser.
+
+;; Punted in favour of moving on to further lessons (sets etc...)
