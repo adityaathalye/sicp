@@ -17,7 +17,7 @@
 ;; 2.58.a Fix assuming fully parenthesized expressions and
 ;; only two arguments.
 
-(define (deriv-a exp var)
+(define (deriv exp var)
   ;; Sums
   (define (sum? e)
     (and (pair? e) (eq? '+ (cadr e))))
@@ -91,22 +91,22 @@
 
 ;; Examples:
 
-(deriv-a '(x + (3 * (x + (y + 2)))) 'x)
+(deriv '(x + (3 * (x + (y + 2)))) 'x)
 
-(deriv-a '(x + 3) 'x)
+(deriv '(x + 3) 'x)
 
-(deriv-a '(x * y) 'x)
+(deriv '(x * y) 'x)
 
-(deriv-a '((x * y) * (x + 3)) 'x)
+(deriv '((x * y) * (x + 3)) 'x)
 
-(deriv-a '(x ^ 2) 'x)
+(deriv '(x ^ 2) 'x)
 
-(deriv-a '(x * (x + 3)) 'x)
+(deriv '(x * (x + 3)) 'x)
 
 ;; Grows insanely
-(deriv-a
- (deriv-a
-  (deriv-a '(((x * (y * z))
+(deriv
+ (deriv
+  (deriv '(((x * (y * z))
             * (x * x))
            * (x ^ 3))
          'x)
