@@ -1,3 +1,5 @@
+;; -*- geiser-scheme-implementation: mit-scheme -*-
+
 ;; ch 2.3.3 Example: Representing Sets
 
 ;; Sets as un-ordered lists
