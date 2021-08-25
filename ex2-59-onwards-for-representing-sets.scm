@@ -1,4 +1,4 @@
-;; -*- geiser-scheme-implementation: mit-scheme -*-
+;; -*- geiser-scheme-implementation: mit -*-
 
 ;; ch 2.3.3 Example: Representing Sets
 

@@ -1,4 +1,4 @@
-;; -*- geiser-scheme-implementation: mit-scheme -*-
+;; -*- geiser-scheme-implementation: mit -*-
 
 ;; Sets as un-ordered lists (from ex 2.59 and 2.60)
 ;; O(n)
